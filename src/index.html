@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bodystat BIA to RedCap Processor</title>
+</head>
+<body>
+  <h1>Bodystat BIA to RedCap Processor</h1>
+  <p>No data on this webpage will be saved. The conversion process is performed only in your browser.</p>
+  <input type="file" id="selectFiles"><br />
+    <button id="import">Convert</button><br />
+    <textarea id="result" rows="20" cols="50"></textarea>
+
+    <script>
+        document.getElementById("import").onclick = function () {
+            let files = document.getElementById('selectFiles').files;
+            console.log(files);
+            if (files.length === 0) {
+                return false;
+            }
+
+            const fr = new FileReader();
+
+            let text;
+
+            fr.onload = e => {
+                console.log(e);
+                text = fr.result;
+                CsvParser(text);
+            }
+
+            fr.readAsText(files[0]);
+        }
+    </script>
+</body>
+</html>
